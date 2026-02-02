@@ -5,15 +5,20 @@ import json
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Load precomputed evaluation metrics
-metrics_df = pd.read_csv("model_metrics.csv")
+st.write("✅ App started loading...")
 
-# Load precomputed confusion matrix and classification report
-with open("evaluation_details.json", "r") as f:
-    eval_details = json.load(f)
+# Safe startup loading of required files
+try:
+    metrics_df = pd.read_csv("model_metrics.csv")
 
-# Load training feature order to ensure consistency
-feature_order = pd.read_csv("feature_order.csv").iloc[:, 0].tolist()
+    with open("evaluation_details.json", "r") as f:
+        eval_details = json.load(f)
+
+    feature_order = pd.read_csv("feature_order.csv").iloc[:, 0].tolist()
+except Exception as e:
+    st.error("Startup failed: Missing or unreadable required file")
+    st.error(e)
+    st.stop()
 
 # -------------------------
 # Load models and scaler
