@@ -16,7 +16,7 @@ try:
 
     feature_order = pd.read_csv("feature_order.csv").iloc[:, 0].tolist()
 except Exception as e:
-    st.error("Startup failed: Missing or unreadable required file")
+    st.error("Startup failed: Missing or ugit add app.pynreadable required file")
     st.error(e)
     st.stop()
 
@@ -29,7 +29,8 @@ try:
         "Decision Tree": joblib.load("model/decision_tree.pkl"),
         "KNN": joblib.load("model/knn.pkl"),
         "Naive Bayes": joblib.load("model/naive_bayes.pkl"),
-        "Random Forest": joblib.load("model/random_forest.pkl")
+        "Random Forest": joblib.load("model/random_forest.pkl"),
+        "XGBoost": joblib.load("model/xgboost.pkl")
     }
     scaler = joblib.load("model/scaler.pkl")
 except Exception as e:
