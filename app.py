@@ -24,8 +24,7 @@ try:
         "Decision Tree": joblib.load("model/decision_tree.pkl"),
         "KNN": joblib.load("model/knn.pkl"),
         "Naive Bayes": joblib.load("model/naive_bayes.pkl"),
-        "Random Forest": joblib.load("model/random_forest.pkl"),
-        "XGBoost": joblib.load("model/xgboost.pkl")
+        "Random Forest": joblib.load("model/random_forest.pkl")
     }
     scaler = joblib.load("model/scaler.pkl")
 except Exception as e:
