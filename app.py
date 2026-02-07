@@ -123,6 +123,24 @@ if page == "Predict New Data":
             st.stop()
 
         model_name = st.selectbox("Select Model for Prediction", list(models.keys()))
+
+        # Special handling for XGBoost (deployment compatibility issue)
+        if model_name == "XGBoost":
+            st.warning("Download Prediction CSV for XGBoost.")
+
+            try:
+                with open("predictions-2.csv", "rb") as f:
+                    st.download_button(
+                        label="Download XGBoost Sample Predictions",
+                        data=f,
+                        file_name="xgboost_predictions.csv",
+                        mime="text/csv"
+                    )
+            except Exception as e:
+                st.error(f"Could not load sample prediction file: {e}")
+
+            st.stop()
+
         model = models[model_name]
 
         # Predictions
